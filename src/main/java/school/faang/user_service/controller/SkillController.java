@@ -30,7 +30,7 @@ public class SkillController {
     }
 
     @GetMapping("/user/{skilled, userId}/acquiredSkill")
-    public SkillDto acquireSkillFromOffers(long skillId, long userId) {
+    public SkillDto acquireSkillFromOffers(@PathVariable long skillId,@PathVariable long userId) {
         return skillService.acquireSkillFromOffers(skillId, userId);
     }
 }
