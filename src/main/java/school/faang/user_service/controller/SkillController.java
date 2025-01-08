@@ -1,12 +1,12 @@
 package school.faang.user_service.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import school.faang.user_service.dto.SkillCandidateDto;
 import school.faang.user_service.dto.SkillDto;
 import school.faang.user_service.service.SkillService;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/skill")
@@ -19,7 +19,18 @@ public class SkillController {
         return skillService.create(skillDto);
     }
 
-    public void getUserSkills(long userId) {
+    @GetMapping("/user/{userId}/skills")
+    public List<SkillDto> getUserSkills(@PathVariable long userId) { //@PathVariable = используется для Get запросов. Указывает вид пути
+        return skillService.getUserSkills(userId);
+    }
 
+    @GetMapping("/user/{userId}/offeredskills")
+    public List<SkillCandidateDto> getOfferedSkills(@PathVariable long userId) {
+        return skillService.getOfferedSkills(userId);
+    }
+
+    @GetMapping("/user/{skilled, userId}/acquiredSkill")
+    public SkillDto acquireSkillFromOffers(long skillId, long userId) {
+        return skillService.acquireSkillFromOffers(skillId, userId);
     }
 }
