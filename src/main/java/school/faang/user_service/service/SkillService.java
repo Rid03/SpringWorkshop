@@ -2,7 +2,6 @@ package school.faang.user_service.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Service;
 import school.faang.user_service.dto.SkillCandidateDto;
 import school.faang.user_service.dto.SkillDto;
@@ -48,15 +47,13 @@ public class SkillService {
 
     public List<SkillCandidateDto> getOfferedSkills(long userId) {
         List<Skill> skills = skillRepository.findSkillsOfferedToUser(userId);
-        @NotNull Map<String, Long> skillOffersCount = skills.stream()
+        Map<String, Long> offersAmount = skills.stream()
                         .collect(Collectors.groupingBy(Skill::getTitle, Collectors.counting()));
-        log.info("Get Offered skills: {}", skills);
-        return skills.stream()
-                .map(skill -> {
-                    SkillCandidateDto dto = skillMapper.toSkillCandidateDto(skill);
-                    return dto;
-                })
-                .distinct().toList();
+        List<SkillCandidateDto> dtos = skillMapper.toSkillCandidateDtoList(skills);
+        dtos.forEach(dto -> {
+            dto.setOffersAmount(offersAmount.get(dto.getSkill().getTitle()));
+        });
+        return dtos;
     }
 
     public SkillDto acquireSkillFromOffers(long skillId, long userId) {

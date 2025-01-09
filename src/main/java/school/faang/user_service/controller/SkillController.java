@@ -29,7 +29,7 @@ public class SkillController {
         return skillService.getOfferedSkills(userId);
     }
 
-    @GetMapping("/user/{skilled, userId}/acquiredSkill")
+    @PostMapping("/user/{skillId}/{userId}/acquiredSkill")
     public SkillDto acquireSkillFromOffers(@PathVariable long skillId,@PathVariable long userId) {
         return skillService.acquireSkillFromOffers(skillId, userId);
     }
