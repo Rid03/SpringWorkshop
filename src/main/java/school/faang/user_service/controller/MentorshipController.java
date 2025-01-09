@@ -13,23 +13,23 @@ import java.util.List;
 public class MentorshipController {
     private final MentorshipService mentorshipService;
 
-    @GetMapping("/get/mentees")
+    @GetMapping("/get/mentees/{userId}")
     public List<UserDto> getMentees(@PathVariable long userId) {
         return mentorshipService.getMentees(userId);
     }
 
-    @GetMapping("/get/mentors")
-    public List<UserDto> getMentors (@PathVariable long userId) {
+    @GetMapping("/get/mentors/{userId}")
+    public List<UserDto> getMentors(@PathVariable long userId) {
         return mentorshipService.getMentors(userId);
     }
 
-    @PostMapping("/delete/mentees")
-    public void deleteMentee (@PathVariable long userId, @PathVariable long mentorId) {
+    @DeleteMapping("/delete/mentees/{mentorId}/{userId}")
+    public void deleteMentee(@PathVariable long userId, @PathVariable long mentorId) {
         mentorshipService.deleteMentee(userId, mentorId);
     }
 
-    @PostMapping("/delete/mentor")
-    public void deleteMentor (@PathVariable long userId, @PathVariable long mentorId) {
+    @DeleteMapping("/delete/mentor/{userId}/{mentorId}")
+    public void deleteMentor(@PathVariable long userId, @PathVariable long mentorId) {
         mentorshipService.deleteMentor(userId, mentorId);
     }
 }
