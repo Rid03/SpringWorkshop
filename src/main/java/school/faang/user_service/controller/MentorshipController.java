@@ -23,12 +23,12 @@ public class MentorshipController {
         return mentorshipService.getMentors(userId);
     }
 
-    @DeleteMapping("/delete/mentees/{mentorId}/{userId}")
+    @DeleteMapping("/mentees/{mentorId}/{userId}")
     public void deleteMentee(@PathVariable long userId, @PathVariable long mentorId) {
         mentorshipService.deleteMentee(userId, mentorId);
     }
 
-    @DeleteMapping("/delete/mentor/{userId}/{mentorId}")
+    @DeleteMapping("/mentor/{userId}/{mentorId}")
     public void deleteMentor(@PathVariable long userId, @PathVariable long mentorId) {
         mentorshipService.deleteMentor(userId, mentorId);
     }
