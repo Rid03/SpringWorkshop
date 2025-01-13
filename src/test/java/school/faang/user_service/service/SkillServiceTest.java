@@ -11,26 +11,23 @@
 //import school.faang.user_service.dto.SkillDto;
 //import school.faang.user_service.entity.Skill;
 //import school.faang.user_service.mapper.SkillMapper;
+//import school.faang.user_service.mapper.SkillMapperImpl;
 //import school.faang.user_service.repository.SkillRepository;
 //
 //import java.util.List;
-//import java.util.Optional;
 //import java.util.stream.Collectors;
-//
-//import static org.junit.Assert.assertEquals;
-//import static org.junit.Assert.assertNotNull;
 //
 //@ExtendWith(MockitoExtension.class)
 //class SkillServiceTest {
 //    @Mock
 //    private SkillRepository skillRepository;
 //    @Mock
-//    private SkillMapper skillMapper = Mappers.getMapper(SkillMapper.class);
+//    private SkillMapperImpl skillMapper;
 //    @InjectMocks
 //    private SkillService skillService;
 //
 //    @Test
-//    void shouldCreateNewSkill() {
+//    void testCreateNewSkill() {
 //        SkillDto skillDto = SkillDto.builder() //Подготовили данные
 //                .id(15L)
 //                .title(" ")
